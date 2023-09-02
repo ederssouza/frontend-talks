@@ -1,0 +1,21 @@
+{
+  "name": "clean-code",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "coverage-test": "jest --coverage",
+    "coverage-test:watch": "jest --coverage --watch"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.11",
+    "@babel/preset-env": "^7.22.14",
+    "@jest/globals": "^29.6.4",
+    "@types/jest": "^29.5.4",
+    "babel-jest": "^29.6.4",
+    "jest": "^29.6.4",
+    "jest-circus": "^29.6.4"
+  }
+}
