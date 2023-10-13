@@ -28,9 +28,28 @@ Um Web Worker, por outro lado, não tem acesso ao DOM e é executado em sua pró
 
 ## 2. Configurando o seu primeiro Web Worker
 
-- Criando um arquivo de script separado para o Worker
-- Inicializando um Worker: new Worker('path/to/worker.js')
-- Comunicação entre a página e o Worker: postMessage e onmessage
+### Criando um arquivo de script separado para o Worker
+
+Os Web Workers são executados em um arquivo JavaScript separado, isolado do script principal. Esse isolamento permite que o Worker execute tarefas sem interferir na thread principal.
+
+```js
+// worker.js
+
+self.onmessage = function(event) {
+  console.log("Mensagem recebida no Worker:", event.data);
+}
+```
+
+### Inicializando um Worker: `new Worker('path/to/worker.js')`
+
+Para iniciar um Web Worker, você deve inicializá-lo no script principal usando a função new Worker(). O argumento dessa função é o caminho do arquivo JavaScript que contém o código do Worker.
+
+### Comunicação entre a página e o Worker: postMessage e onmessage
+
+A comunicação entre o script principal e o Web Worker é realizada através do envio de mensagens.
+
+- `postMessage()`: é usado para enviar mensagens. Pode ser chamado tanto do script principal quanto do script do Worker.
+- `onmessage`: é um manipulador de eventos que é acionado quando uma mensagem é recebida.
 
 ## 3. Transferência de dados entre a página e o Worker
 

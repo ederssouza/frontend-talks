@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurando o seu primeiro Web Worker</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 1. O script principal envia "Olá, Worker!" para o Worker.
+     * 2. O Worker recebe a mensagem e imprime no console.
+     * 3. O Worker responde com "Oi, script principal! Recebi sua mensagem.".
+     * 4. O script principal recebe a mensagem do Worker e imprime no console.
+     *
+     * Agora você configurou e estabeleceu uma comunicação bidirecional entre
+     * o script principal e o Web Worker! Isso é a base para a maioria das operações
+     * que você realizará com Web Workers.
+    */
+
+    // Iniciando o Web Worker
+    const myWorker = new Worker('./worker.js');
+
+    // Enviando uma mensagem para o Worker
+    myWorker.postMessage("Olá, Worker!");
+
+    myWorker.onmessage = function(event) {
+      console.log("Mensagem recebida do Worker:", event.data);
+    }
+  </script>
+</body>
+</html>
