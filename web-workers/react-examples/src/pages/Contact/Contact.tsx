@@ -1,15 +1,21 @@
+import { useEffect } from "react";
 import { useWorker } from "@/hooks";
 
 function Contact() {
-  const { worker } = useWorker();
+  const { data, postMessage } = useWorker("sharedWorker.js");
 
-  worker.onmessage = (event) => {
-    console.log("Message received from worker", event);
-  };
+  function handleClick() {
+    postMessage("Contact.tsx");
+  }
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <div>
       <h1>Contact</h1>
+      <button onClick={handleClick}>Post message</button>
     </div>
   );
 }

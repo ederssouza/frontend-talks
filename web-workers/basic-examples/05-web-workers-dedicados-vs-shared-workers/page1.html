@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page 1</title>
+</head>
+
+<body>
+  <button onclick="sendMessage()">Enviar mensagem para Shared Worker</button>
+
+  <script>
+    const sharedWorker = new SharedWorker('sharedWorker.js');
+
+    sharedWorker.port.onmessage = function(event) {
+      console.log("Resposta da Página 1:", event.data);
+    };
+
+    function sendMessage() {
+      sharedWorker.port.postMessage("Olá do Página 1!");
+    }
+
+    sharedWorker.port.start();
+  </script>
+</body>
+</html>

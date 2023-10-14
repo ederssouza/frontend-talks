@@ -1,14 +1,48 @@
-import { WorkerContext } from "@/contexts";
-import { useContext } from "react";
+import { useEffect, useRef, useState } from "react";
 
-function useWorker() {
-  const context = useContext(WorkerContext);
+type WorkerState<T> = {
+  data?: T;
+  error?: MessageEvent;
+};
 
-  if (!Object.keys(context).length) {
-    throw new Error("useWorker must be used within a WorkerContext");
+function useWorker<T>(filePath: string | URL) {
+  const sharedWorker = useRef(new SharedWorker(filePath, { type: "module" }));
+  const [state, setState] = useState<WorkerState<T>>({});
+
+  function postMessage(data: unknown) {
+    sharedWorker.current.port.postMessage(data);
   }
 
-  return context;
+  useEffect(() => {
+    const worker = sharedWorker.current;
+
+    function messageHandler(event: MessageEvent) {
+      setState((prevState) => ({
+        ...prevState,
+        data: event.data,
+        error: undefined,
+      }));
+    }
+
+    function errorHandler(event: MessageEvent) {
+      setState((prevState) => ({ ...prevState, error: event }));
+    }
+
+    worker.port.addEventListener("message", messageHandler);
+    worker.port.addEventListener("messageerror", errorHandler);
+    worker.port.start();
+
+    return () => {
+      worker.port.removeEventListener("message", messageHandler);
+      worker.port.removeEventListener("messageerror", errorHandler);
+      worker.port.close();
+    };
+  }, []);
+
+  return {
+    ...state,
+    postMessage,
+  };
 }
 
 export default useWorker;

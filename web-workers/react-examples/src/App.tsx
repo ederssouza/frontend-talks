@@ -2,14 +2,11 @@
 // https://www.youtube.com/watch?v=-wXPxJYhZeI&ab_channel=ErickWendel
 import { BrowserRouter } from "react-router-dom";
 import { Router } from "./router";
-import { WorkerProvider } from "./providers";
 
 function App() {
   return (
     <BrowserRouter>
-      <WorkerProvider>
-        <Router />
-      </WorkerProvider>
+      <Router />
     </BrowserRouter>
   );
 }
