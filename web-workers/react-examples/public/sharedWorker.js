@@ -1,6 +1,8 @@
 const ports = [];
 
-self.onconnect = function (event) {
+self.addEventListener("connect", handleConnect);
+
+function handleConnect(event) {
   const port = event.ports[0];
 
   ports.push(port);
@@ -14,4 +16,4 @@ self.onconnect = function (event) {
       }
     }
   }
-};
+}
