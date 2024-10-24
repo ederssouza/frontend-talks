@@ -1,5 +1,5 @@
 function App() {
-  return <div>React JavaScript Boilerplate</div>
+  return null
 }
 
 export default App
