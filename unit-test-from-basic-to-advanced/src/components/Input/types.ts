@@ -1,5 +1,1 @@
-import type { ReactNode } from 'react'
-
-export type Props = {
-  children: ReactNode
-}
+export type Props = React.InputHTMLAttributes<HTMLInputElement>

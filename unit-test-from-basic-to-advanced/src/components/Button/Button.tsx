@@ -1,9 +1,9 @@
 import { Props } from './types'
 
 function Button(props: Props) {
-  const { children } = props
+  const { children, loading, ...rest } = props
 
-  return <div>{children}</div>
+  return <button {...rest}>{loading ? 'Loading...' : children}</button>
 }
 
 export default Button

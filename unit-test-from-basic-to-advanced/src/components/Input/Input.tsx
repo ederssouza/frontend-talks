@@ -1,9 +1,7 @@
 import { Props } from './types'
 
 function Input(props: Props) {
-  const { children } = props
-
-  return <div>{children}</div>
+  return <input {...props} />
 }
 
 export default Input

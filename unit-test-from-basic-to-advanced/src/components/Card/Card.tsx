@@ -1,9 +1,14 @@
 import { Props } from './types'
 
 function Card(props: Props) {
-  const { children } = props
+  const { title, description } = props
 
-  return <div>{children}</div>
+  return (
+    <div>
+      <h2>{title}</h2>
+      <p>{description}</p>
+    </div>
+  )
 }
 
 export default Card
