@@ -23,6 +23,11 @@ module.exports = {
       type: 'add',
       path: '../src/components/{{pascalCase name}}/{{pascalCase name}}.test.tsx',
       templateFile: './templates/component/test.tsx.hbs'
+    },
+    {
+      type: 'add',
+      path: '../src/components/{{pascalCase name}}/types.ts',
+      templateFile: './templates/component/types.ts.hbs'
     }
   ]
 }
