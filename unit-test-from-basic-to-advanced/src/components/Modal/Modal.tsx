@@ -1,8 +1,4 @@
-import type { ReactNode } from 'react'
-
-export type Props = {
-  children: ReactNode
-}
+import { Props } from './types'
 
 function Modal(props: Props) {
   const { children } = props
