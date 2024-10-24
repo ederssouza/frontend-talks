@@ -2,30 +2,40 @@
 
 - Jest e RTL (React Testing Library), qual a diferença?
 - Qual a importância dos testes unitários?
-- Organizando os testes com encadeamento de `describe`s
+- Configurando o jest corretamente
+- Organizando os testes com encadeamento de `describe`s e quais são as vantages?
 
 - Mocks:
-  - jest.mock('...')
-  - jest.fn()
-  - jest.spyOn()
+  - `jest.mock('...')`
+  - `jest.fn()`
+  - `jest.spyOn()`
   - export default
   - named exports
   - componentes
 
-- act x waitFor
+- `act` x `waitFor`
 
 - Tratamento de eventos (`fireEvent` e `userEvent`):
 
-- Tratamento de exceções:
-  - try/catch
-  - expect().toThrow()
-
 - Lidando com requisições assíncronas
 
-- beforeAll, beforeEach, afterEach, afterAll
+- Tratamento de exceções:
+  - `try/catch`
+  - `expect().toThrow()`
 
-- fake timers (setTimeout, setInterval)
+- `beforeAll`, `beforeEach`, `afterEach` e `afterAll`
+
+- fake timers (`setTimeout`, `setInterval`)
+
+- Falso positivo
 
 - Criando testes consistentes
 
 - Cobertura de código, vilão ou herói?
+
+- Otimizando os testes e reduzindo o tempo de execução:
+  - Mocks
+  - Agrupamento de testes
+  - `--maxWorkers`
+
+- Garantindo a execução dos testes em ambientes de CI/CD de forma fluída e sem erros.
