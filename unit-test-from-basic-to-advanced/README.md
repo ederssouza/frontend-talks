@@ -2,8 +2,14 @@
 
 - Jest e RTL (React Testing Library), qual a diferença?
 - Qual a importância dos testes unitários?
-- Configurando o jest corretamente
+- Configurando o jest corretamente:
+  - ignorando arquivos
+  - criando scripts
 - Organizando os testes com encadeamento de `describe`s e quais são as vantages?
+
+- Testando módulos;
+- Testando componentes;
+- Testando hooks;
 
 - Mocks:
   - `jest.mock('...')`
