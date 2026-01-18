@@ -11,6 +11,8 @@ function D() {
         <p>Dependa de abstrações, não de implementações.</p>
       </header>
 
+      {/* https://blog.shadui.dev/implementing-dependency-injection-in-a-react-project/?ref=dailydev */}
+
       <Tabs
         badExample={<div>Exemplo Ruim</div>}
         goodExample={<div>Exemplo Bom</div>}
