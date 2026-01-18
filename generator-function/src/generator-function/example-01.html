@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pré-carregamento de Conteúdo</title>
+</head>
+
+<body>
+  <div id="thumbnails">
+    <img src="https://loremflickr.com/cache/resized/3724_9307361092_bc149c72aa_320_240_nofilter.jpg" data-full="https://loremflickr.com/cache/resized/3724_9307361092_7a09ae45d4_k_1280_1280_nofilter.jpg" />
+    <img src="https://loremflickr.com/cache/resized/3693_9571255488_a40810933e_320_240_nofilter.jpg" data-full="https://loremflickr.com/cache/resized/3693_9571255488_490cc09534_k_1280_1280_nofilter.jpg" />
+  </div>
+
+  <!-- Onde a imagem em tamanho real será exibida -->
+  <img id="fullImageDisplay" src="" alt="">
+
+  <script>
+    const thumbnails = document.querySelectorAll('#thumbnails img');
+    const imagesToLoad = Array.from(thumbnails).map(img => img.getAttribute('data-full'));
+    const fullImageDisplay = document.querySelector('#fullImageDisplay');
+    const loader = imageLoader(imagesToLoad);
+    let preloadedImages = [];
+
+    thumbnails.forEach(image => {
+      image.addEventListener('click', showImage)
+    })
+
+    function showImage(event) {
+      const src = event.target.dataset.full
+      // fullImageDisplay.src = src;
+
+      const imgToDisplay = preloadedImages.find(img => img.src.endsWith(src)); // Encontrar a imagem já pré-carregada
+
+      console.log('imgToDisplay', imgToDisplay)
+
+      if (imgToDisplay) {
+        fullImageDisplay.src = imgToDisplay.src;
+      } else {
+        // Se, por algum motivo, a imagem não foi pré-carregada, carregue-a agora
+        fullImageDisplay.src = src;
+      }
+    }
+
+    (async function() {
+      let nextImage = loader.next();
+
+      while (!nextImage.done) {
+        try {
+          await preloadImage(nextImage.value);
+        } catch (error) {
+          console.error("Erro ao carregar imagem:", error);
+        }
+
+        nextImage = loader.next();
+      }
+    })();
+
+    function* imageLoader(images) {
+      for (let image of images) {
+        yield image;
+      }
+    }
+
+    function preloadImage(url) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+
+        img.onload = () => {
+          preloadedImages.push(img); // Armazenando a imagem pré-carregada em uma matriz
+          resolve(url);
+        };
+
+        img.onerror = reject;
+        img.src = url;
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="textOutput">
+    <!-- O texto será exibido aqui -->
+  </div>
+  <button id="renderText">Renderizar Texto</button>
+
+
+  <script>
+    const button = document.getElementById('renderText')
+    const longText = "Este é um texto muito longo que será exibido palavra por palavra na página. A ideia é simular o funcionamento do ChatGPT";
+
+    button.addEventListener('click', render);
+
+    function delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function* renderTextByWord(text) {
+      const words = text.split(' ');
+
+      for (let word of words) {
+        yield word;
+      }
+    }
+
+    function render () {
+      const outputDiv = document.getElementById('textOutput');
+      const textGen = renderTextByWord(longText);
+
+      outputDiv.innerHTML = '';
+
+      (async function displayWordByWord() {
+        let next = textGen.next();
+
+        while (!next.done) {
+          outputDiv.innerHTML += next.value + ' ';
+          await delay(100);
+          next = textGen.next();
+        }
+
+        console.log('another script...')
+      })();
+    }
+  </script>
+</body>
+</html>

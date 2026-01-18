@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="textOutput">
+    <!-- O texto será exibido aqui -->
+  </div>
+  <button id="renderText">Renderizar Texto</button>
+
+
+  <script>
+    const button = document.getElementById('renderText');
+    const longText = "Este é um texto muito longo que será exibido palavra por palavra na página. A ideia é simular o funcionamento do ChatGPT";
+
+    button.addEventListener('click', render);
+
+    function render() {
+      const outputDiv = document.getElementById('textOutput');
+      const words = longText.split(' ');
+      let wordIndex = 0;
+
+      outputDiv.innerHTML = '';
+
+      const intervalId = setInterval(() => {
+        if (wordIndex < words.length) {
+          outputDiv.innerHTML += words[wordIndex] + ' ';
+          wordIndex++;
+        } else {
+          clearInterval(intervalId); // Interrompe o setInterval quando todas as palavras forem exibidas
+        }
+
+      }, 100);
+    }
+  </script>
+</body>
+</html>

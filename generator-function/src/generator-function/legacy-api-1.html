@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legacy API</title>
+</head>
+
+<body>
+  <table id="usersTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+
+    <tbody></tbody>
+  </table>
+
+  <script>
+    (function () {
+      // Esta função cria um mock de um grande conjunto de dados de usuários
+      function createUsersMock(n) {
+        let users = [];
+        for (let i = 0; i < n; i++) {
+          users.push({ id: i, name: `User ${i}`, email: `user${i}@example.com` });
+        }
+        return users;
+      }
+
+      // Obtendo os dados mockados (por exemplo, 5000 usuários)
+      const largeData = createUsersMock(200000);
+
+      function handleData() {
+        const chunkSize = 50;
+
+        for (let i = 0; i < largeData.length; i += chunkSize) {
+          const chunk = largeData.slice(i, i + chunkSize);
+          renderChunk(chunk);
+        }
+      }
+
+      function renderChunk(chunk) {
+        const tableBody = document.querySelector('#usersTable tbody');
+
+        for (let user of chunk) {
+          const row = document.createElement('tr');
+
+          const idCell = document.createElement('td');
+          idCell.textContent = user.id;
+          row.appendChild(idCell);
+
+          const nameCell = document.createElement('td');
+          nameCell.textContent = user.name;
+          row.appendChild(nameCell);
+
+          const emailCell = document.createElement('td');
+          emailCell.textContent = user.email;
+          row.appendChild(emailCell);
+
+          tableBody.appendChild(row);
+        }
+      }
+
+      handleData();
+    })()
+  </script>
+</body>
+</html>

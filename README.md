@@ -7,4 +7,5 @@
 - [Generator Function](./generator-function)
 - [Clean Architecture for Frontends](./clean-architecture-for-frontends)
 - [Web Workers](./web-workers)
-- [Web Workers](./unit-test-from-basic-to-advanced/)
+- [Unit Test from Basic to Advanced](./unit-test-from-basic-to-advanced)
+- [ReactJS + Solid Principles](./reactjs-solid)
