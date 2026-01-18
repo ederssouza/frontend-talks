@@ -1,3 +1,5 @@
+import { Tabs } from "../../components";
+
 function I() {
   return (
     <div>
@@ -10,6 +12,11 @@ function I() {
           Clientes não devem ser forçados a depender de interfaces que não usam.
         </p>
       </header>
+
+      <Tabs
+        badExample={<div>Exemplo Ruim</div>}
+        goodExample={<div>Exemplo Bom</div>}
+      />
     </div>
   );
 }

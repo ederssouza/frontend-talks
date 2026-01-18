@@ -1,3 +1,5 @@
+import { Tabs } from "../../components";
+
 function O() {
   return (
     <div>
@@ -11,6 +13,11 @@ function O() {
           modificação.
         </p>
       </header>
+
+      <Tabs
+        badExample={<div>Exemplo Ruim</div>}
+        goodExample={<div>Exemplo Bom</div>}
+      />
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import { Tabs } from "../../components";
+
 function L() {
   return (
     <div>
@@ -8,6 +10,11 @@ function L() {
         <span>Liskov Substitution Principle</span>
         <p>Classes derivadas devem ser substituíveis por suas classes base.</p>
       </header>
+
+      <Tabs
+        badExample={<div>Exemplo Ruim</div>}
+        goodExample={<div>Exemplo Bom</div>}
+      />
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import { Tabs } from "../../components";
+
 function D() {
   return (
     <div>
@@ -8,6 +10,11 @@ function D() {
         <span>Dependency Inversion Principle</span>
         <p>Dependa de abstrações, não de implementações.</p>
       </header>
+
+      <Tabs
+        badExample={<div>Exemplo Ruim</div>}
+        goodExample={<div>Exemplo Bom</div>}
+      />
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import { Tabs } from "../../components";
+
 function S() {
   return (
     <div>
@@ -11,6 +13,11 @@ function S() {
           encapsulada.
         </p>
       </header>
+
+      <Tabs
+        badExample={<div>Exemplo Ruim</div>}
+        goodExample={<div>Exemplo Bom</div>}
+      />
     </div>
   );
 }
